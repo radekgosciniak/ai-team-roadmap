@@ -1,12 +1,22 @@
 # External repositories — adoption map for AI Development Team
 
 **Status:** architecture reference / planned evaluation, **NOT IMPLEMENTATION AUTHORIZATION**  
-**Last updated:** 2026-11-09  
+**Last updated:** 2026-11-09 (post-PR #51 merge)  
 **Owner:** AI Development Team architecture roadmap  
 **Canonical public roadmap:** [AI Team Roadmap](https://github.com/radekgosciniak/ai-team-roadmap)  
 **Project implementation:** [AI Development Team](https://github.com/radekgosciniak/AI-Development-Team)
 
 This document is a durable record of which externally reviewed projects may be useful, **when** to revisit them and **what must be verified** before implementation. It is a decision register, not a dependency list or permission to copy code.
+
+
+## 2026-11-09 — AGCAT post-merge checkpoint and integration boundary
+
+- **Implementation repository:** [PR #51](https://github.com/radekgosciniak/AI-Development-Team/pull/51) **MERGED**; merge SHA `56c530ca5bcccc79b0a65f22e77e11b125eafcea`; AGCAT-UI-01 head `deeed3b4d5428a65e44b91bf0f0907ad5d01dfb9`. Local `main` was updated to the same merge commit; the active working directory remains on its separate feature branch, with uncommitted changes preserved.
+- **Functional evidence:** original AGCAT-2 native smoke **12/12 PASS**; own Win32 dark/light approval dialog, visual catalog editor and independent review; F-01 native retest **T1–T5 PASS**, four previously ignored environment-sensitive Rust tests **4/4 PASS**. These results do **not** constitute full workflow E2E.
+- **Known security scope:** high-assurance child-process trace W-3 **BLOCKED**; custody C **NOT CLOSED**. These belong to a separate qualification track and were documented at merge, not silently closed.
+- **Functional boundary:** AGCAT-3 **NOT STARTED**. The PR does not integrate verified account selection, agent membership in Tasks, real CLI execution, durable live sessions or automatic agent handoffs.
+- **Next checkpoint:** **CC-INT-01** — code-grounded integration map and automated tests on synthetic data covering Accounts → Agent Catalog → Tasks → Execution → Sessions; classify each edge as IMPLEMENTED / PARTIAL / MOCK / MISSING. Follow with separately authorized minimal fixes and AGCAT-3, not unplanned broad migrations. No new work started as of this checkpoint.
+- **Operational hygiene:** PR #51 merged without required GitHub Actions checks because repository had zero workflows and `main` lacked branch protection at the time; CI/ruleset hardening is a future separate task. Do not infer CI PASS. Preserve all unrelated worktrees.
 
 ## Reviewed source snapshots
 
@@ -22,7 +32,7 @@ Original local study: `C:\AI-Development-Team\reports\AION-ANALYSIS\AION-ARCHITE
 
 | Stage | Our need | Reference pattern | Decision | Preconditions / completion evidence |
 |---|---|---|---|---|
-| **AGCAT-1/2** | Trusted catalog, native user approval and agent membership | No Aion integration | **KEEP OWN IMPLEMENTATION** | AGCAT-1 accepted with conditions; AGCAT-2 PR #51 Draft, Windows native acceptance still pending |
+| **AGCAT-1/2 + AGCAT-UI-01** | Trusted catalog, native operator approval, visual editor and revision/receipt persistence | No Aion integration | **OWN IMPLEMENTATION — MERGED 2026-11-09** | [PR #51](https://github.com/radekgosciniak/AI-Development-Team/pull/51) MERGED (`56c530c`); native functional smoke 12/12 PASS; Win32 F-01 T1–T5 PASS, independent P2 delta review 4/4 verified. High-assurance W-3 BLOCKED and custody C NOT CLOSED in separate track |
 | **AGCAT-3** | Select verified agent for Tasks without creating an execution path | Catalog identity/revision / atomic membership check; Aion is conceptual input only | **OWN CONTRACT, NO IMPORT** | Hold catalog lock through Tasks commit; verify identity and revision; fail closed on missing membership; do not turn on `execution_ready` |
 | **Stage 1A.2** | Real provider CLI integration and process lifecycle | AionCore ACP/process supervision concepts, session model | **ADAPT AFTER REVIEW** | Independent Windows process tree/Job Object review; explicit operator permissions; CLI capability and cancellation tests; recovery semantics; avoid blind auto-approval |
 | **P7 — Real Agent Broker** | Reliable agent-to-agent handoffs and work allocation | AionCore Mailbox, TaskBoard, Team Scheduler, team coordination | **PRIMARY ADAPT CANDIDATE** | First independently review isolated Mailbox PoC (54/54 tests reported, delta review pending). Specify durable state, lease/ack, idempotency, deadlines, crash/restart and sender authentication; implement within our trust model |
@@ -37,12 +47,13 @@ Original local study: `C:\AI-Development-Team\reports\AION-ANALYSIS\AION-ARCHITE
 3. **Do not equate file ownership or same-SID attribution with security against a hostile same-SID process.** Windows NTFS, ACL, races, process containment, Job Objects and recovery must be assessed within the relevant stage.
 4. Keep **TaskBoard** (work lifecycle) separate from **Mailbox** (messages / handoffs); document at-least-once delivery and make handlers idempotent. Exactly-once must not be claimed without proof.
 5. Before starting each stage, re-examine pinned external commits and current upstream changes; record reviewed version, accepted patterns and rejected patterns.
-6. This register does not change state of P3-1A1 Recovery, P6-A, W3.3 or AGCAT-2 native acceptance, and grants **no authorization** for PR merge or agent execution.
+6. This register does not change state of P3-1A1 Recovery, P6-A, W3.3 or AGCAT-2 native acceptance, and grants **no authorization** for further PR merges, automatic agent execution or new implementation work. PR #51 was merged under its separate explicit authorization.
 
 ## Next concrete decision points
 
-- **Now:** finish AGCAT-2 native smoke qualification (W-1 V3 preflight controller list-construction blocker), keep [PR #51](https://github.com/radekgosciniak/AI-Development-Team/pull/51) as Draft until native acceptance decision.
-- **After AGCAT-2:** plan AGCAT-3 Tasks membership, using our approved catalog contract.
+- **Completed 2026-11-09:** AGCAT-1/2 + AGCAT-UI-01 merged in [PR #51](https://github.com/radekgosciniak/AI-Development-Team/pull/51), merge `56c530ca5bcccc79b0a65f22e77e11b125eafcea` (source head `deeed3b4d5428a65e44b91bf0f0907ad5d01dfb9`). Functional native acceptance and F-01 retest passed; W-3 high-assurance and custody C remain explicitly open and were not formal merge gates.
+- **Next planned: CC-INT-01 (NOT STARTED / not yet authorized):** independently trace AI Provider Accounts → Agent Catalog → Tasks → Execution → Sessions; classify each edge IMPLEMENTED / PARTIAL / MOCK / MISSING with source-backed evidence, then run synthetic automated integration tests only within authorized boundaries. The audit must not claim real agent launch, verified CLI-account switching or live sessions without proof.
+- **After integration mapping:** plan AGCAT-3 Tasks membership using our catalog contract and shared lock, with its own scope, review and explicit approval. Not started; no production agent execution enabled.
 - **Before P7 implementation:** ask an independent reviewer to perform **Mailbox PoC P2 delta review**; then draft a narrow P7 architecture decision comparing AionCore Mailbox/TaskBoard/Scheduler to our requirements, including Windows and security gaps.
 - **Before P8 implementation:** decide an event schema for session/run/agent status and evaluate AionUi's interface patterns against our approved Command Center UX.
 
