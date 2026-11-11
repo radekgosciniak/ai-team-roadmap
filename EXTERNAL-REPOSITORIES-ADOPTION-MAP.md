@@ -1,13 +1,22 @@
 # External repositories — adoption map for AI Development Team
 
 **Status:** architecture reference / planned evaluation, **NOT IMPLEMENTATION AUTHORIZATION**  
-**Last updated:** 2026-11-09 (post-PR #51 merge)  
+**Last updated:** 2026-11-12 (post-PR #53 merge; preserved PR #51 checkpoint)  
 **Owner:** AI Development Team architecture roadmap  
 **Canonical public roadmap:** [AI Team Roadmap](https://github.com/radekgosciniak/ai-team-roadmap)  
 **Project implementation:** [AI Development Team](https://github.com/radekgosciniak/AI-Development-Team)
 
 This document is a durable record of which externally reviewed projects may be useful, **when** to revisit them and **what must be verified** before implementation. It is a decision register, not a dependency list or permission to copy code.
 
+
+## 2026-11-12 — ACC-ID-01 provider account discovery MERGED
+
+- [PR #53](https://github.com/radekgosciniak/AI-Development-Team/pull/53) merged into remote `main` (merge `10e9f6f90d714b5d6140ac9014b80fb322276a81`).
+- Claude and Codex **system default account discovery now work natively** as DECLARED; managed profile discovery is implemented, but managed Codex real-login acceptance remains pending. F-1/F-2, F-6a, F-3, UX-02 and F-4 are included in the merged delivery.
+- **ORCA is a pattern reference, not a runtime dependency**: do not scan ORCA profiles or synchronize ORCA account sessions. No Account Login Manager / browser onboarding, account-to-agent Execution binding or VERIFIED receipt has been delivered by this PR.
+- **NEXT:** safe local `main` fast-forward (not independently confirmed), then Account Login Manager (separate authorization for actual provider login/CLI launch), Account Assignment and Execution/F-9.
+- **BACKLOG:** UI-BUG-OVERFLOW-01 blank white scroll area (P2); narrow 520px UI (P3), 36 pre-existing Rust Recovery failures and accepted account-discovery MINOR items.
+- **Canonical checkpoint:** [ACC-ID-01 account discovery status](ACC-ID-01-ACCOUNT-DISCOVERY-STATUS.md). This milestone updates only the account-discovery track; AGCAT/CC-INT/Recovery/Stage 1A.2/P7 statuses below remain governed by their own evidence.
 
 ## 2026-11-09 — AGCAT post-merge checkpoint and integration boundary
 
