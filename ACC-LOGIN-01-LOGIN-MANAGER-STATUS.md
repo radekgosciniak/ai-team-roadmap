@@ -1,5 +1,8 @@
 # ACC-LOGIN-01 — Account Login Manager / EX-LAUNCH-0 (2026-11-12)
 
+> **Aktualizacja po PR #55 i #56:** ACCOUNT-BIND-01 oraz Execution F9 E1/E2 są już scalone. Poniższe priorytety były aktualne w chwili merge PR #54. Bieżący stan i kolejność E3–E7: [Execution F9 status](EXECUTION-F9-STATUS-2026-11-12.md). 
+
+
 **Implementation:** [AI-Development-Team](https://github.com/radekgosciniak/AI-Development-Team)  
 **Merged:** [PR #54](https://github.com/radekgosciniak/AI-Development-Team/pull/54), 12 November 2026  
 **Feature commit:** `fb0054c`  
