@@ -1,9 +1,10 @@
-# Execution F9 — stan po PR #56 (2026-11-12)
+# Execution F9 — stan po PR #57 (2026-11-12)
 
 **Repozytorium aplikacji:** [AI-Development-Team](https://github.com/radekgosciniak/AI-Development-Team)  
 **Account Assignment:** [PR #55](https://github.com/radekgosciniak/AI-Development-Team/pull/55) — MERGED; merge `70279425787e3d17386dcc29abf0bedd563b4817`; feature commit `03c400a05b39fd3f33e126a2f13b2bff9d4c3135`.  
 **Identity Probe + UI:** [PR #56](https://github.com/radekgosciniak/AI-Development-Team/pull/56) — MERGED; merge `ad40f99b877c799c00571647706c1d07936cb07f`; feature commit `354c460d48d134c7a9eed70ffd95dde803d795bb`.  
-**State of implementation:** E1/E2 merged and functionally accepted in native tests; E3 is **next authorized implementation task, not reported completed**.
+**E3 Preflight Gate:** [PR #57](https://github.com/radekgosciniak/AI-Development-Team/pull/57) — MERGED; merge `e6d8ee55701a5e97983158eeb231ebd031362bac`; feature commit `7505584173fee9f573e0c0d609079d9bed90ccdd`. Local `main == origin/main == e6d8ee5` confirmed by fast-forward sync.  
+**State of implementation:** E1, E2, E3 merged and functionally accepted in native tests. **Next: E4, blocked on resolving the admission/launch TOCTOU gap before any actual execution.**
 
 ## Delivered foundation
 
@@ -14,11 +15,22 @@
 | ACCOUNT-BIND-01 | MERGED (PR #55), native 11/11 PASS | Durable agent → account binding using existing provider-accounts registry, Rust validation, Agent Catalog and Tasks presentation; P3-1 disabled Remove for assigned accounts |
 | F9 E1 — production Identity Probe | MERGED (PR #56), native FUNCTIONAL PASS | CLI account check in managed profiles; production Ticket → Receipt → record/judge; bounded stdin/output, pinned executable, generation and freshness checks; Claude 2.1.322, Codex 0.167.2 |
 | F9 E2 — verification UI | MERGED (PR #56), native FUNCTIONAL PASS | CLI binary pin, EXPECTED, explicit identity pin, Check identity/Cancel, fresh VERIFIED and mismatch/error states |
-| F9 E3 — backend preflight | **NEXT / NOT CONFIRMED IMPLEMENTED** | Gate for task, approved agent, managed account, EXPECTED, pinned identity, fresh VERIFIED <=60s, unchanged binary and revisions, one-time approval, repository state; no launch |
-| E4 — read-only execution | PLANNED | Actual agent CLI execution using existing EX-LAUNCH-0 after E3, not yet authorized in current task |
+| F9 E3 — backend preflight + minimal UI | **MERGED (PR #57), native FUNCTIONAL PASS** | Backend READY/BLOCKED gate checks task → approved agent → managed account → pinned/EXPECTED fresh VERIFIED <=60s → clean Git repo → one-time read-only authorization v2; minimal Live Execution panel, no Start |
+| E4 — read-only execution | **NEXT / BLOCKED (TOCTOU)** | Implement native non-IPC `admit()` (atomic recheck, consume, launch context; post-consume recheck), close final profile/binary TOCTOU at launcher, enforce true CLI read-only constraints, then controlled execution using EX-LAUNCH-0; no task has run |
 | E5 — Runs records | PLANNED | Durable run result and metadata, no credential/transcript leakage |
 | E6 — Runs controls | PLANNED | Start/Cancel user experience |
 | E7 — native end-to-end | PLANNED | First controlled read-only run and review |
+
+## E3 native acceptance and next blocker
+
+- **PR #57 merged** to `main`; local `main` fast-forward synchronized to `e6d8ee55701a5e97983158eeb231ebd031362bac`; E3 worktree `feat/execution-f9-e3` remained clean and intact (HEAD `7505584`).
+- **N3-1…N3-10 PASS:** both Claude and Codex reached backend preflight READY; negative tests returned appropriate BLOCKED stages/codes: stale or missing VERIFIED, dirty Git, changed task/catalog/binding/EXPECTED, expired/missing authorization and system account refusal. E3 does not launch CLI or an agent task.
+- **Authorization v2** in the existing `execution_control` store replaces fixed Stage 1 catalog matching for F9; bound to task, current accepted Agent Catalog, agent, managed account, profile, binary, EXPECTED, scope and repository. Approval requires explicit operator confirmation. Consumption is internal, not IPC.
+- Two defects fixed during native test: v2 responses wrongly tagged `/1`; TypeScript compared serialized JSON while Rust sorted object keys. Cross-language fixture regression tests added.
+- E3 test baseline: **Rust 459 pass / 36 known Recovery fail / 6 ignored**, **Node 490 pass / 0 fail / 5 skip**, tsc/Vite/Cargo PASS; no evidence of new regression.
+- **BLOCKER FOR E4 — TOCTOU:** E3 `check` and v2 `consume` are not an atomic admission gate. E4 must create an internal Rust `admit()` that checks current chain while holding appropriate task/admission synchronization, consumes the one-time authorization, rechecks after consumption and aborts fail-closed on any change (consumption remains consumed). The residual gap between admission and EX-LAUNCH-0 needs final pinned executable SHA and correct managed-profile validation in launcher. Read-only must be actually enforced, not just requested by prompt.
+- Open UI backlog: `UI-LIVE-EXECUTION-01` / `UI-BUG-OVERFLOW-01`: E3 panel's “Prepare authorization” extends outside its container causing horizontal scrolling; the oversized “Live Execution is not available” placeholder and cramped status/info hierarchy need restructuring. Fix UI access/overflow when necessary; full Claude Design redesign after E7.
+- No live agent execution authorized/performed yet. Test Codex EXPECTED and test Agent Catalog remain intentionally mutated in isolated **test** app data; do not move them into normal data or clean up without approval.
 
 ## E1/E2 evidence
 
