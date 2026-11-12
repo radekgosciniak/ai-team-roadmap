@@ -1,5 +1,8 @@
 # ACC-ID-01 — account discovery checkpoint (2026-11-12)
 
+> **Superseded next-step status (12 November 2026):** The “Account Login Manager — priority 1 / not started” section below records the historical state immediately after PR #53. ACC-LOGIN-01 and EX-LAUNCH-0 were subsequently **implemented, natively accepted and merged** in [PR #54](https://github.com/radekgosciniak/AI-Development-Team/pull/54). The local `main` is now synchronized with `origin/main` at `480e269cc1e67651f5ab62f7878523779cad80f7` (SYNC PASS). See [current Login Manager status and next priorities](ACC-LOGIN-01-LOGIN-MANAGER-STATUS.md). Next work is Account Assignment, then separately authorized Execution/F-9.
+
+
 **Implementation repository:** [AI Development Team](https://github.com/radekgosciniak/AI-Development-Team)  
 **Merged delivery:** [PR #53 — feat(accounts): add Claude and Codex identity discovery](https://github.com/radekgosciniak/AI-Development-Team/pull/53)  
 **Feature commit:** `74e986446ed03080b398cd09c08de354c4d458aa`  
