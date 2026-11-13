@@ -30,21 +30,31 @@
 | Pakiet | Status | Zakres / warunek |
 | --- | --- | --- |
 | **UXF-1 / S1** | **MERGED — PR #60** | `CC-PROJECT-DEFAULTS/1`, osobna rewizja projektu, get/set/clear; domyślny agent tylko wstępnie wypełnia formularz; bez zmian istniejących zadań i Execution |
-| **UXF-2 / S2–S3** | **NOT STARTED — NEXT** | Automatyczne aliasy/profile_id, karta „Agenci projektu”, dodawanie agenta i przypisanie konta; **najpierw poprawki Claude Design D-1…D-8 i zgoda właściciela** |
+| **UXF-2 / S2–S3** | **PR #61 OPEN — READY WITH CONDITION, NOT MERGED** | Implementacja S2/S3, automatyczne aliasy i karta „Agenci projektu”; 4 rundy Codex, 9 znalezisk P2 poprawiono; runda 5 (ostatnia delta) jeszcze niewykonana; natywne ścieżki zapisu do odbioru w UXF-4 |
 | **UXF-3 / S4–S5** | **NOT STARTED** | Domyślny agent w formularzu zadania, „Zmień agenta”, zakładka „Uruchomienie”, przejście do panelu E4 |
 | **UXF-4 / S6** | **NOT STARTED** | Integracja, regresja, natywny smoke Claude/Codex; osobny mały fix poziomego przewijania przy 480 px |
 
-**Przegląd projektu:** READY WITH CHANGES. Rozpoznane korekty: nie sugerować READY bez świeżej weryfikacji i autoryzacji (`identityNotVerified`, `identityStale`, `notAuthorized`, `notChecked`); poprawić tabelę błędów i `baselineNotClean`; generator aliasów musi uwzględniać aliasy historyczne zapisane w agentach i nie dopuścić do przypadkowego nadania dostępu do nowego projektu; uwzględnić `projectUnbound`, pusty katalog i usunięty projekt. Wariant A zostaje. Konto agenta wynika z jego wiązania, nie z osobnego domyślnego konta projektu.
+**Przegląd projektu:** DESIGN READY FOR IMPLEMENTATION (FIX-01 v1.2, D-1…D-8 poprawione; teksty zakładki „Uruchomienie” zatwierdzone). Rozpoznane korekty: nie sugerować READY bez świeżej weryfikacji i autoryzacji (`identityNotVerified`, `identityStale`, `notAuthorized`, `notChecked`); poprawić tabelę błędów i `baselineNotClean`; generator aliasów musi uwzględniać aliasy historyczne zapisane w agentach i nie dopuścić do przypadkowego nadania dostępu do nowego projektu; uwzględnić `projectUnbound`, pusty katalog i usunięty projekt. Wariant A zostaje. Konto agenta wynika z jego wiązania, nie z osobnego domyślnego konta projektu.
 
 **UXF-1 review:** dwa uruchomienia `codex exec -s read-only` koordynowane przez Claude Code, uwagi P2/P3 naprawione, review delta READY. Użyto domyślnego profilu Windows (konto niepotwierdzone) i `reasoning effort: none`; ograniczenie dowodowe jawne. Testy wg raportu: Rust module 22 PASS, Node 507 PASS / 0 FAIL / 5 SKIP, TS/Vite PASS; pełny Rust na pierwszym commicie 545 PASS / 36 znanych Recovery FAIL / 6 SKIP. Merge `1c24518`.
 
 ## Następna kolejność
 
-1. **UXF-2**, po dopracowaniu specyfikacji i UX przez Claude Design (D-1…D-8), zatwierdzeniu i implementacji w osobnym PR.
+1. **UXF-2 / PR #61** — implementacja gotowa warunkowo, **bez merge**. Oczekuje na niezależną rundę 5 Codex dla delty `bb46354..c4a296d`; potem decyzja właściciela o merge. Użytkownik potwierdził ręczny reset limitu Codex 13.11.2026; sam reset nie uruchamia review.
 2. UXF-3, następnie UXF-4 — dopiero po odbiorze kompletnego UX-FLOW-01 warto prezentować użytkownikowi całość nowego przepływu.
 3. **Execution F9 E5** — trwałe rekordy uruchomień; **E6** — prawdziwa lista i szczegóły Runs/Live Execution; **E7** — dalsza integracja end-to-end. Te etapy są **NOT STARTED**.
 4. Po E7 pełne odświeżenie Claude Design: `UX-ACCOUNT-SIMPLIFICATION-01`, `UX-EXECUTION-SIMPLIFICATION-01`, uproszczone dodawanie kont „Add account → Login → Done”, a także zarządzanie zmianami wersji CLI bez modyfikacji kodu przy każdym wydaniu.
 5. **AGENT-COLLAB-REVIEW-01 (backlog, niezaimplementowane):** Claude Code → Codex CLI → niezależny review → raport → poprawki; docelowo przez Command Center z jawnym wyborem kont/profili, kontrolą procesów oraz historią promptu, diffu, modelu, poziomu rozumowania i werdyktów. Planowanie po E7, zależność od E5/E6.
+
+## ACCOUNT-USAGE-01 — limity i ręczny reset Codex (BACKLOG)
+
+Wzorzec: [Orca](https://github.com/stablyai/orca) — widok limitów osobno dla sesji/tygodnia, odnowienie, aktywne konto/profil, dostępne kredyty resetu, okno potwierdzenia. **ADAPT / NO MIGRATION**, bez kopiowania kodu bez weryfikacji licencji i API.
+
+- **A1 — odczyt:** limity per managed account i provider (Codex; Claude tylko po weryfikacji obsługi), zużycie i czas odnowienia; UNKNOWN/UNSUPPORTED gdy brak wiarygodnych danych, bez wyprowadzania stanu z etykiety profilu.
+- **A2 — reset Codex:** wyłącznie manualny, tylko dla aktywnego i jawnie wybranego konta; sprawdzić dostępność kredytów, wyświetlić koszt (1 kredyt), zakres i termin ważności, potwierdzić natywnie, wykonać operację idempotentnie i ponownie odczytać stan. Nigdy automatycznie przez agenta.
+- **Przed implementacją:** zweryfikować dostępny protokół/wersję Codex i zgodność RPC (np. `account/rateLimits/read` oraz ewentualny reset), izolację profili, semantykę błędów i zasady autoryzacji. Obecność tych metod nie jest jeszcze niezależnie zweryfikowana w tej roadmapie.
+- **Termin:** po UXF-4 lub równolegle z E5, bez blokowania PR #61 i UXF-3.
+- **Fakt operacyjny:** użytkownik potwierdził, że 13.11.2026 samodzielnie użył dostępnego kredytu resetu limitu Codex w Orca. Nie oznacza to automatycznej kwalifikacji konta ani uruchomienia zaległego review UXF-2, którego wynik nadal nie został przekazany.
 
 ## Otwarte zadania i ograniczenia
 
