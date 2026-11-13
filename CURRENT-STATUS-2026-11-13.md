@@ -1,5 +1,25 @@
 # AI Development Team — aktualny status (13 listopada 2026)
 
+## Aktualizacja końca dnia — 13.11.2026, po PR #63
+
+**Aktualny stan GitHub (potwierdzony):**
+- **UXF-1:** MERGED — [PR #60](https://github.com/radekgosciniak/AI-Development-Team/pull/60), merge `1c24518`.
+- **UXF-2 / S2–S3:** MERGED — [PR #61](https://github.com/radekgosciniak/AI-Development-Team/pull/61), merge `f86db18`; Codex R5 READY, przegląd zamknięty. Natywne zapisy pozostają do UXF-4.
+- **UXF-3 / S4–S5:** MERGED — [PR #62](https://github.com/radekgosciniak/AI-Development-Team/pull/62), merge `bfdec8aa9743d40a0664c7bbe3a42e1902b13ee5`; formularz Task, agent, zakładka „Uruchomienie”, przejście do panelu; Codex READY; Node 564 PASS / 0 FAIL / 5 SKIP.
+- **UI-POLISH-PREFLIGHT-01:** MERGED — [PR #63](https://github.com/radekgosciniak/AI-Development-Team/pull/63), merge `e81f9f907f835d25d99e243eb28f595f63ed66c6`, HEAD PR `a09c092`; CSS Project/Task selects i panelu, Codex R2 READY; Node 567 PASS / 0 FAIL / 5 SKIP, TypeScript/build PASS. Bez zmian logiki/IPC/Rust.
+- **Execution F9 E1–E4:** MERGED, E4 nadal ACCEPTED WITH CONDITIONS (wyłącznie FictionalFixture). **E5–E7 NOT STARTED**.
+
+**Stan następny:** **UXF-4 / S6 — NOT STARTED / NEXT**, pełny natywny odbiór projektu → agenta → konta → zadania → Preflight/Execution i ścieżek zapisu za zgodą operatora na izolowanych danych. Docelowy redesign i rzeczywisty Live Execution po E5/E6. `ACCOUNT-USAGE-01` (limity, reset Codex, zwarty wybór kont Orca) i `AGENT-COLLAB-REVIEW-01` to backlog, nie wymagania UXF-4.
+
+**UWAGA o testach:** pełny Rust UXF-3 został zatrzymany po zawieszeniu testu `execution_executor` (233/589, 0 fail do chwili zatrzymania); **nie jest pełnym PASS**. W UXF-3 nie było zmian Rust. Znany osobno baseline: 36 FAIL w `provider_accounts::recovery`. Późniejsza diagnostyka; bez automatycznego twierdzenia o braku nowej regresji.
+
+**Zamknięcie dnia:** wymagane lokalne `main == origin/main == e81f9f9` po bezpiecznym fetch/fast-forward, z zachowaniem głównego checkout, wszystkich worktree, profili i lokalnych dowodów. Nie jest jeszcze potwierdzone. Trwały checkpoint stanu, raportów i decyzji w lokalnym repo; brak rozpoczęcia UXF-4 i E5–E7 dziś.
+
+**Pierwszeństwo:** ta aktualizacja zastępuje nieaktualne statusy UXF-2/UXF-3 w historycznych sekcjach poniżej; starsze dane pozostawiono jako zapis wcześniejszej migawki.
+
+---
+
+
 > **Bieżący status nadrzędny** względem historycznego raportu E1–E3 z 12 listopada. Fakty o PR potwierdzone na GitHub; wyniki testów i lokalny stan main na podstawie raportów odbiorowych Claude Code.
 
 ## Wydane do main
