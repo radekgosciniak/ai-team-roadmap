@@ -1,6 +1,7 @@
 # EXECUTION-IDENTITY-60S-UX-01 — sesyjna wygoda, świeża weryfikacja przed startem
 
 **Stan:** BACKLOG / decyzja koncepcyjna zatwierdzona do planowania, niezaimplementowane (2026-11-14).  
+**Stan odniesienia 14.11.2026:** E6 MERGED / ACCEPTED; E7 NOT STARTED. Projekt nadal BACKLOG. Obecna blokada po zmianie SHA należy do przejściowego E4; docelowa polityka [Trusted CLI](CURRENT-STATUS-2026-11-14.md) zastępuje obowiązkową ręczną kwalifikację każdej oficjalnej aktualizacji, ale nie usuwa wymogu świeżej kontroli tożsamości przed startem.  
 **Powiązania:** UX-EXECUTION-SIMPLIFICATION-01, Execution E4/E6/E7, problem E-1 (zmiana binarki CLI).
 
 ## Cel
@@ -18,7 +19,7 @@ Obecnie po autoryzacji trzeba przejść do AI Provider Accounts, ręcznie wykona
 
 ## Warunki i kryteria odbioru
 
-- Aktualizacja CLI lub zmiana SHA, konta, profilu, EXPECTED, procesu unieważnia sesyjny wskaźnik i blokuje start do ponownej kwalifikacji, zgodnie z E4; rozwiązać E-1 bez automatycznego uznawania nieznanych binarek.
+- Zmiana konta, profilu, EXPECTED lub procesu unieważnia wskaźnik sesyjny; zmiana obrazu CLI także wymaga ponownej oceny faktycznie uruchamianej binarki. W docelowym Trusted CLI sama oficjalna aktualizacja/SHA nie wymaga ręcznej kwalifikacji każdej wersji; start jest dopuszczony dopiero po potwierdzeniu pochodzenia, zgodności i integralności. Do wdrożenia tej polityki obecna bramka E4 pozostaje fail-closed.
 - Testy: pierwszy start; drugi start w tej samej sesji po >60 sekundach; restart aplikacji; podmiana konta; update CLI; identity mismatch; Cancel; timeout; brak dostępu CLI; równoczesne inicjacje; niezdolność do uzyskania autoryzacji.
 - Żadnych zmian w trwałym modelu uprawnień bez niezależnego review. Osobne worktree, bez zmian E4 podczas prac projektowych.
 - **Priorytet:** projekt / analiza kontraktów podczas E6; implementacja po osobnej zgodzie i kwalifikacji, najpóźniej przed uznaniem docelowego UX uruchomień za zakończony. Nie blokuje samego historycznego E5 ani zamkniętego UXF-4B.
