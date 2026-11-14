@@ -1,3 +1,5 @@
+> **MIGAWKA HISTORYCZNA (13.11.2026).** Najnowszy status, wykonane merge PR #64–#68 i decyzja Trusted CLI: [CURRENT-STATUS-2026-11-14.md](CURRENT-STATUS-2026-11-14.md). Poniższe dawne stany OPEN/NOT STARTED są zachowane wyłącznie jako historia.
+
 # AI Development Team — aktualny status (13 listopada 2026)
 
 ## Aktualizacja końca dnia — 13.11.2026, po PR #63
