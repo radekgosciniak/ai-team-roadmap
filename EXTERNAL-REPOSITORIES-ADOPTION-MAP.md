@@ -179,3 +179,12 @@ The eight listed second-brain repositories were inspected through their GitHub m
 5. **OD-05 UX/PILR:** prototype a non-executing view that connects agent roster, routines, project pulse and roadmap context without displacing approved Command Center layouts; retain direct tasks without roadmap.
 
 **Architecture rule:** one authoritative Projects/Tasks/Runs/Sessions state, one broker and one scheduler; memory is advisory and cannot grant permissions or mark tasks accepted. Open Duet is an integration/UX reference, not a replacement for AionCore, ai-memory, GBrain, Orca or the Command Center. Existing security gates, stage order and stabilization priority remain unchanged. External code may be imported only after pinned-source, license, dependency and independent security reviews and separate operator approval.
+
+
+## 2026-11-15 — Microsoft TokenEconomizer (agent experience / cost optimization)
+
+**Decision: ADAPT / NO MIGRATION / NOT AUTHORIZED FOR INSTALLATION.** [Upstream](https://github.com/microsoft/TokenEconomizer) (Apache-2.0) reports benchmark savings for coding agents, but this has not been verified for Command Center. Potential patterns: (1) project-scoped, evidence-backed micro-skills tied to PILR and ai-memory/GBrain; (2) bounded failure-loop detection in Runs/Sessions with operator notification; (3) advisory-first tool pruning, never silent removal of security-critical capabilities; (4) accurate token/cache/cost telemetry.
+
+**Compatibility caution:** upstream tested Claude Code 2.1.300–2.1.310 and Codex 0.153.1–0.164.0; local Claude 2.1.325 / Codex 0.167.2 are outside the documented ranges. Plugin hooks and edits to `.claude/settings.local.json` / `.codex/config.toml` could affect managed profile isolation, Trusted CLI contracts and permission boundaries. No installation in managed profiles, no model/agent run and no modification of account settings is authorized by this entry.
+
+**Next gates:** TOK-01…TOK-06: pinned source and license → privacy/identity isolation → offline micro-skills → synthetic loop guard → tool-pruning feasibility → separately approved cost/quality pilot. Continue Trusted CLI / G1 / TC-3 / E7 first. See [TOKEN-OPT-01 detailed roadmap](proposals/TOKEN-OPT-01-agent-experience-token-optimization.md).
