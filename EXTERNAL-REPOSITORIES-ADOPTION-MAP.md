@@ -154,3 +154,28 @@ TASK/RUN STATE      knowledge + handoff summaries
 The eight listed second-brain repositories were inspected through their GitHub metadata and README content on **2026-11-09**. Numbers of stars, features and speed/security claims are upstream self-descriptions, not independently reproduced benchmarks. AionCore/AionUi code-level observations and snapshots are documented in the earlier part of this register and in the local \`reports/AION-ANALYSIS/AION-ARCHITECTURE-SECURITY-ASSESSMENT-2026-11-08.md\`. Obscura was previously evaluated as browser-provider research; Orca's exact browser engine/CDP support has **not** been independently established.
 
 **Authority notice:** This public register is a planning aid. It does not supersede the application implementation repo, its evidence, operator decisions, fail-closed security policies or independent acceptance.
+
+
+## 2026-11-15 — Open Duet comparative architecture review (ADAPT / NO MIGRATION)
+
+**Status: research and design reference only; NOT implementation authorization.** Open Duet (project shown as `open-duet` in the reviewed demonstration; upstream canonical URL/commit and license require independent confirmation before code reuse) was compared against existing AionCore, AionUi, ai-memory, GBrain, COG Second Brain, Open Second Brain, Orca and PILR references. The current review is documentation/concept-level; **no code-level security audit, runtime tests, pinned upstream snapshot, or independent benchmark was performed**. Do not treat demo animations or README claims as acceptance evidence.
+
+| Need | Existing primary reference | Open Duet contribution | Decision |
+|---|---|---|---|
+| Reliable delegation, mailbox, task lifecycle | AionCore Mailbox / TaskBoard (P7) | Unified roster/team UX and delegation flows | **ADAPT UX/CONTRACT IDEAS ONLY**; keep one authoritative broker |
+| Agent handoff and recovery | ai-memory + P7 | Shared agent context and teamwork patterns | **COMPARE** against CLM-1; no second handoff authority |
+| Long-term project memory and provenance | GBrain, COG, Open Second Brain (CLM-2/3) | Shared memory UI and discovery | **REFERENCE**; test citations, correction, scope and rollback before selection |
+| Scheduled workflows | AionCore scheduler | Reusable routines and scheduling UX | **ADAPT CONCEPTS**; only one scheduler, explicit operator consent, DST, missed runs, retries and dedup |
+| Agent sessions and desktop activity | AionUi, own Tauri/React | Seven-step progressive disclosure and cohesive product navigation | **UX INSPIRATION**; real event data only |
+| Accounts and CLI execution | Own Stage 1A.2; Orca as pattern reference | Roster/team entry points | **NO RUNTIME MIGRATION**; preserve account isolation, Windows process controls and approval gates |
+| Project governance | PILR-ADR-001 | Routines/team context can consume an approved roadmap snapshot | **INTEGRATE CONCEPTUALLY**; Roadmap Mode optional, Direct Task Mode always available |
+
+### Targeted evaluation gates (no implementation authorized)
+
+1. **OD-01 source verification:** resolve canonical repository, exact commit, license, backend/frontend modules, test coverage and release maturity; distinguish working code from demonstration, experimental or simulated integrations.
+2. **OD-02 routines vs scheduler:** synthetic restart, timeout, duplicate delivery, missed-run/DST, retry and approval tests; compare to AionCore. Never create a competing task executor.
+3. **OD-03 shared memory vs GBrain/ai-memory:** evaluate citation accuracy, contradiction/supersession, project isolation, recovery, local storage, sensitive data and deterministic export/rollback.
+4. **OD-04 delegation vs P7 Mailbox:** verify durable claim/ack, idempotency, crash recovery, cancellation, agent identity and permission boundary; distinguish messaging from authoritative task leases.
+5. **OD-05 UX/PILR:** prototype a non-executing view that connects agent roster, routines, project pulse and roadmap context without displacing approved Command Center layouts; retain direct tasks without roadmap.
+
+**Architecture rule:** one authoritative Projects/Tasks/Runs/Sessions state, one broker and one scheduler; memory is advisory and cannot grant permissions or mark tasks accepted. Open Duet is an integration/UX reference, not a replacement for AionCore, ai-memory, GBrain, Orca or the Command Center. Existing security gates, stage order and stabilization priority remain unchanged. External code may be imported only after pinned-source, license, dependency and independent security reviews and separate operator approval.
