@@ -63,3 +63,12 @@ Agents in Roadmap Mode may flag new findings and propose plan updates, but canno
 8. Preserve roadmap and decision history in portable, version-controlled files.
 
 This document records an approved product/architecture direction, **not** authorization to modify the running application or execute agents.
+
+
+## Open Duet reference — 2026-11-15
+
+**Decision: UX / integration-pattern reference only (ADAPT / NO MIGRATION).** The cross-project comparison and five verification gates OD-01 through OD-05 are recorded in [External repositories adoption map](../EXTERNAL-REPOSITORIES-ADOPTION-MAP.md#2026-11-15--open-duet-comparative-architecture-review-adapt--no-migration).
+
+Potential PILR touchpoints: a cohesive roster/team interface, reusable operator-approved routines, contextual memory retrieval, and project progress visibility. **Roadmap Mode** may supply approved scope/dependencies/context to agent routines; **Direct Task Mode** must remain usable without a roadmap. Neither routine templates nor memory can grant execution authority, silently rewrite milestones, bypass approval gates, or declare completion verified. Use existing Projects/Tasks/Runs/Sessions and the future single P7 broker/scheduler rather than building parallel authorities.
+
+**Before implementation:** verify upstream source and licensing, evaluate routine/restart/dedup semantics, compare memory provenance against GBrain and ai-memory, test delegation recovery against AionCore Mailbox, and prototype the UX without live execution. This addition does not change PILR's concept-approved/implementation-not-authorized status or current stabilization priorities.
