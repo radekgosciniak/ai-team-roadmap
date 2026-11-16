@@ -188,3 +188,8 @@ The eight listed second-brain repositories were inspected through their GitHub m
 **Compatibility caution:** upstream tested Claude Code 2.1.300–2.1.310 and Codex 0.153.1–0.164.0; local Claude 2.1.325 / Codex 0.167.2 are outside the documented ranges. Plugin hooks and edits to `.claude/settings.local.json` / `.codex/config.toml` could affect managed profile isolation, Trusted CLI contracts and permission boundaries. No installation in managed profiles, no model/agent run and no modification of account settings is authorized by this entry.
 
 **Next gates:** TOK-01…TOK-06: pinned source and license → privacy/identity isolation → offline micro-skills → synthetic loop guard → tool-pruning feasibility → separately approved cost/quality pilot. Continue Trusted CLI / G1 / TC-3 / E7 first. See [TOKEN-OPT-01 detailed roadmap](proposals/TOKEN-OPT-01-agent-experience-token-optimization.md).
+
+
+## 2026-11-16 — Andrew Ng OpenWorker (agent harness, sandbox, approvals)
+
+**Decision: ADAPT / NO MIGRATION / DESIGN REVIEW ONLY.** [Upstream](https://github.com/andrewyng/openworker). Candidate patterns: Harness SDK and session lifecycle (E7 / Interactive Agent Chat), approval/consent (Trusted CLI / E4), Windows sandbox (security gates), scheduling (P7 / PILR) and session UX. Verify source commit, license and actual implementation before relying on upstream claims. No installation, execution, migration, changes to account profiles or implementation authorization; no change to current stage order. Gates OW-01…OW-06 and adoption criteria: [OPENWORKER-01 review](proposals/OPENWORKER-ADOPTION-REVIEW.md).
