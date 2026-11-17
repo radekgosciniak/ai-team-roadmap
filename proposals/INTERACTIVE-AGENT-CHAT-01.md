@@ -50,6 +50,7 @@ Provide a native, interactive conversation experience with a selected Claude Cod
 
 ## Related references
 
+- [AGENT-USAGE-UX-01 — unified Claude / Codex usage and account status](AGENT-USAGE-UX-01.md) — compact/detailed account quota overview, refresh/freshness and status-bar UX; no unverified quota claims.
 - [PILR — Project Intelligence & Living Roadmap](PILR-project-intelligence-living-roadmap.md)
 - [External repositories adoption map](../EXTERNAL-REPOSITORIES-ADOPTION-MAP.md) — Orca/Open Duet/AionUi are **ADAPT / NO MIGRATION** references.
 - [Current operational status (2026-11-14)](../CURRENT-STATUS-2026-11-14.md) — historical checkpoint; subsequent Trusted CLI work must follow actual acceptance status.
