@@ -1,13 +1,27 @@
 # External repositories — adoption map for AI Development Team
 
 **Status:** architecture reference / planned evaluation, **NOT IMPLEMENTATION AUTHORIZATION**  
-**Last updated:** 2026-11-12 (post-PR #53 merge; preserved PR #51 checkpoint)  
+**Last updated:** 2026-11-22 (ECC candidate registered; historical checkpoints preserved)  
 **Owner:** AI Development Team architecture roadmap  
 **Canonical public roadmap:** [AI Team Roadmap](https://github.com/radekgosciniak/ai-team-roadmap)  
 **Project implementation:** [AI Development Team](https://github.com/radekgosciniak/AI-Development-Team)
 
 This document is a durable record of which externally reviewed projects may be useful, **when** to revisit them and **what must be verified** before implementation. It is a decision register, not a dependency list or permission to copy code.
 
+
+## 2026-11-22 — ECC (Everything Claude Code): high-priority targeted adoption review
+
+- **Upstream:** [affaan-m/ECC](https://github.com/affaan-m/ECC), snapshot [`4adeee6732a12d1540f49a4d50a38ce8c97f9a53`](https://github.com/affaan-m/ECC/tree/4adeee6732a12d1540f49a4d50a38ce8c97f9a53) (2026-11-20); upstream package `ecc-universal` 2.2.3; **MIT**, check notices for any later source-code adoption.
+- **Priority:** **HIGH — TARGETED ADOPTION REVIEW / BACKLOG**, **NOT INSTALLED / NOT INTEGRATED / NOT IMPLEMENTATION AUTHORIZATION**. The source is a framework for multi-agent engineering workflows, hooks, rules, skills and review; it is **not** an NTFS transaction or Windows packaging library.
+- **P7 / Project Intelligence & Living Roadmap — ADAPT candidate:** [`scripts/worktree-lifecycle.js`](https://github.com/affaan-m/ECC/blob/4adeee6732a12d1540f49a4d50a38ce8c97f9a53/scripts/worktree-lifecycle.js) categorizes worktrees as dirty/merge-ready/conflict/merged/stale/idle and proposes a non-destructive cleanup plan; examine the underlying `scripts/lib/worktree-lifecycle/` before adoption. Map to our isolated Claude implementer / independent Codex reviewer and protect dirty/unmerged worktrees.
+- **P7 / GitHub task coordination — ADAPT candidate:** [`scripts/github-coordination.js`](https://github.com/affaan-m/ECC/blob/4adeee6732a12d1540f49a4d50a38ce8c97f9a53/scripts/github-coordination.js) offers claim, sync, validate, publish, review, unblock, decompose; compare against our roadmap-governed/direct-task dual mode, operator approval, GitHub PR state and idempotent handoffs. No auto-merge or unapproved task execution.
+- **Quality / independent acceptance — ADAPT candidate:** [`scripts/eval-harness.js`](https://github.com/affaan-m/ECC/blob/4adeee6732a12d1540f49a4d50a38ce8c97f9a53/scripts/eval-harness.js) includes capsule/receipt verification and gate-report conventions. Its CLI explicitly says isolated gate execution is unavailable (`gate.isolation_required`): **do not** interpret this as proof of sandbox isolation. Evaluate read-only evidence capsules and independently verified receipts, not replacement of our Codex review gates.
+- **Skills / role templates — SELECTIVE ADOPT candidate:** selectively review `agents/`, `skills/`, `.claude/` and `.codex/` for roles, TDD, security and review practices. Avoid bulk import of hundreds of rules, hooks or agents; determine lifecycle and license per exact file.
+- **Security / observability — REVIEW ONLY:** AgentShield, GateGuard, scripts for operator readiness and dashboards may inform future architecture, but hooks and auto-actions can conflict with Trust Broker, Tauri ACL and native consent. Audit real code, side effects, data handling and bypass paths before consideration.
+- **S4-B2-P1 / PR #80 FIX-03:** **NO CHANGE**. Existing journal short-write and indeterminate-fsync blockers remain the priority; ECC cannot be used as an unverified fix. No install or dependency is permitted in that PR.
+- **S4-B2-UI / P8:** consider dashboard/control-plane UX concepts during the previously mandated AionUi/Orca/OpenWorker comparison; any ECC inspiration requires source-level verification.
+- **Acceptance prerequisites:** pinned source+license+transitive deps; Windows 11/Node/Tauri compatibility; security boundaries; dry-run; no automatic shell execution/merges; isolation between implementer and reviewer; evidence and rollback; comparative demonstration of an advantage over already implemented functionality.
+- **Decision:** targeted **ADAPT / SELECTIVE ADOPT / REVIEW** only; **NO MIGRATION** and **NO automatic install** (neither `npx ecc-universal setup` nor global/local Claude/Codex plugin without separate authorization). Preserve G-ENV OPEN, G1 BLOCKED, D-3 DEFERRED.
 
 ## 2026-11-12 — ACC-ID-01 provider account discovery MERGED
 
