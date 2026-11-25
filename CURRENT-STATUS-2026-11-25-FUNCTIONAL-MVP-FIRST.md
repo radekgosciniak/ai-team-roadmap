@@ -1,6 +1,6 @@
 # Functional MVP First — 2026-11-25
 
-Operator approved R2-01–07 option A and deferred R2-O1–O4. SQLite selected for synthetic P7A-2B only; implementation is not authorized yet. REV-02 targeted corrections addendum SHA-256 949551dd444540bfa4054e06eb9f2083ac43683037570b910f653506e216f0ba. Three proposed closures (allocator replay, CancelOnly, refusal precedence) await focused independent confirmation. Exact P7A-1 revision d3e132295d6208f5a02540287eaea7da3d46c1ad; E-01 BLOCKED / NOT RUN, acceptance outstanding.
+Operator approved R2-01–07 option A and deferred R2-O1–O4. SQLite selected for synthetic P7A-2B only; implementation is not authorized yet. REV-02 targeted corrections addendum SHA-256 949551dd444540bfa4054e06eb9f2083ac43683037570b910f653506e216f0ba. Design accepted; allocator replay and refusal precedence independently confirmed, CancelOnly design confirmed and CAP-13 documentation corrected. Final addendum P7A-2A-TARGETED-CORRECTIONS-REV-03.md SHA-256 4bda9d4c3f90d25f054f6d266e9724081aadff419a7233c0ac328c504ab56c03. Exact P7A-1 revision d3e132295d6208f5a02540287eaea7da3d46c1ad; E-01 BLOCKED / NOT RUN, acceptance outstanding.
 
 ## Approved decisions
 R2-01 rusqlite =0.43.0 bundled, default features disabled; candidate libsqlite3-sys 0.40.0 / SQLite 3.54.1; validate lockfile, MSVC, Rust >=1.89, feature graph, advisory and SBOM during authorized implementation.
@@ -13,8 +13,8 @@ R2-07 local NTFS test custody, one canonical path; A/B only after P7A-2B authori
 R2-O1–O4 deferred: external checkpoint, import, snapshot/compaction/archive/store succession, lease renewal/paged audit. Remove synthetic lifetime limits before production use.
 
 ## Shortest route to functional MVP
-1. Confirm only three targeted design corrections; no full architecture audit. Preserve E-01; no retry of denied operation or alternate executor bypass.
-2. In parallel, propose P7A-3/P8 synthetic browser workflow UI on isolated merged baseline 0f5cbf4f24f40f2f01394c83f43d88f4664fccdc, using existing React components and mock IPC. Reuse local preview dd68718 as reference, not accepted native evidence. Show task, assigned developer, QA, reviewer, correction, operator acceptance, errors and cancellation. No actual agent calls, native IPC, production bundle changes, or merge. Separate implementation authorization required.
+1. DONE: SQLite design accepted. Next priority: close existing PR83 acceptance gates (P0–P9 and P2 or effective approved CL-P2), then E-01 and P7A-1 acceptance. Preserve existing evidence; no retry of denied operation or alternate executor bypass.
+2. Only if existing integration gates remain blocked, consider in parallel P7A-3/P8 synthetic browser workflow UI on isolated merged baseline 0f5cbf4f24f40f2f01394c83f43d88f4664fccdc, using existing React components and mock IPC. Reuse local preview dd68718 as reference, not accepted native evidence. Show task, assigned developer, QA, reviewer, correction, operator acceptance, errors and cancellation. No actual agent calls, native IPC, production bundle changes, or merge. Separate implementation authorization required.
 3. When independently authorized E-01 prerequisites exist, complete existing E-01 and operator acceptance; then separately authorize P7A-2B SQLite implementation and P7A-2C acceptance. No new architecture scope.
 4. Integrate accepted broker and UI only after dependency and merge-order review; synthetic end-to-end workflow first.
 5. Resolve real execution prerequisites and obtain explicit authorization before real Codex developer -> mandatory QA -> Claude reviewer -> operator acceptance. No automatic Git/system changes.
