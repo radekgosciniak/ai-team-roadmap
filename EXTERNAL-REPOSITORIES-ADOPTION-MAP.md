@@ -1,13 +1,37 @@
 # External repositories — adoption map for AI Development Team
 
 **Status:** architecture reference / planned evaluation, **NOT IMPLEMENTATION AUTHORIZATION**  
-**Last updated:** 2026-11-22 (ECC candidate registered; historical checkpoints preserved)  
+**Last updated:** 2026-11-28 (AgenticOS + Agenting OS reference candidates; historical checkpoints preserved)  
 **Owner:** AI Development Team architecture roadmap  
 **Canonical public roadmap:** [AI Team Roadmap](https://github.com/radekgosciniak/ai-team-roadmap)  
 **Project implementation:** [AI Development Team](https://github.com/radekgosciniak/AI-Development-Team)
 
 This document is a durable record of which externally reviewed projects may be useful, **when** to revisit them and **what must be verified** before implementation. It is a decision register, not a dependency list or permission to copy code.
 
+
+## 2026-11-28 — External desktop orchestration references: AgenticOS and Agenting OS
+
+**Classification: ARCHITECTURE/IMPLEMENTATION REFERENCE ONLY — NO CODE ADOPTION, DEPENDENCY, INSTALL OR NEW EXECUTION AUTHORIZATION.** Evaluated public GitHub README, provider/security/onboarding documentation and repository metadata at exact pinned main revisions. Source-level targeted acceptance and independent security review remain prerequisites before any integration.
+
+### EXT-AGENTICOS-01 — Vstorm AgenticOS
+- **Repo:** https://github.com/vstorm-co/agenticos ; **pin:** `f17573b8b7170a51b4463ed72ab082427bb82a03` ; **license:** Apache-2.0; **stack:** Python/Pydantic AI/FastAPI, PostgreSQL+pgvector, Next.js, desktop; larger self-hosted company agent platform. Metadata snapshot: ~917 stars, 193 forks, 2026-11-28.
+- **Potential P7/P8 value:** local Claude Code/Codex CLI selection/session/resume and explicit operator-approved local folder; agent roles/subagents, approvals, audit, cost controls, UI patterns for visual workflows and human review; MCP catalog and skill onboarding as later optional examples.
+- **Boundary:** published docs/promotional prepared illustrations are not proof of completed real inter-agent runs, verified isolation, or safe use of CLI process privileges. Company/server stack not interchangeable with Tauri2/Rust/React/SQLite.
+- **Disposition:** **ADAPT CONCEPTUALLY / REVIEW SPECIFIC CLI ADAPTERS WHEN P7 ACTUAL-AGENT INTEGRATION IS AUTHORIZED**; no runtime migration or code import. Preserve approved Rust broker as authority and all review/security gates.
+
+### EXT-AGENTING-OS-01 — AI Evolution Polska Agenting OS
+- **Repo:** https://github.com/aievolutionpl/agentic-os ; **pin:** `6a673f3c9b8c5005740494a568eb1ffb7f3c5a8f` (main 2026-11-28); **license:** Apache-2.0, individual third-party notices and skill licenses apply; **stack:** Electron/React/TypeScript, SQLite/FTS5, node-pty/Xterm.js; Windows-first local desktop app. Repository metadata snapshot: ~9 stars, one fork, early release `0.5.0-rc.3`; source may be ahead of published installer; current release/security claims not independently executed.
+- **P7 highest-priority targeted reference:** `docs/PROVIDERS.md` Codex app-server (thread, streaming, steering, cancel, read-only/supervised profile, rate-limit windows), Claude CLI streaming JSON/login/resume/read-only review, CLI availability vs verified auth/status vs real inference, model + quota UNKNOWN rather than fabricated values, explicit worktree/candidate review and user approval.
+- **P7/P8 later UI ideas:** `docs/ONBOARDING-AND-JEV.md` terminal-assisted official install, explicit login and verified check; deterministic eligibility and optional Jev provider decision only after opt-in, human confirms, no implicit permissions. Conversations→task, project-scoped memory/context provenance, skill catalog pinned versions, status/quota cards, scheduling, terminal panels. Compare only if a specific acceptance gap exists, no copying entire workflow/agent scheduler.
+- **Important security boundary from `SECURITY.md`:** ACP/MCP executables are trusted local processes with user OS permissions, *not OS sandboxes*; manual terminal is unrestricted trusted-user capability outside agent controls; local projects/context/SQLite can be unencrypted; Claude quota reader may access CLI local OAuth access token for usage call (not transmitted to renderer). Treat these as review risks, **not accepted patterns** for our Trust Broker or credential handling.
+- **Maturity and evidence:** `docs/RELEASE_STATUS.md` notes release candidate validation, unsigned installer/clean-machine tests and current-tag checks outstanding; provider doc historical verification is not current authenticated-account proof. Verify pinned source/tests/CI and distribution artifacts before any reliance.
+- **Disposition:** **TARGETED ADAPT / NO MIGRATION**, rank higher than Vstorm for Windows-local Codex/Claude adapter and UI/auth-state comparison; no code reuse, no automatic credential reads, profile copying, fallback bypass, agent launch or permission change. Reevaluate in separately authorized P7 real-agent integration task only.
+
+### Cross-project adoption and stage precedence
+- **Priority 1 reference:** AI Evolution Polska for practical Windows Codex app-server/Claude CLI lifecycle, status and consent, model selection and reviewer separation. **Priority 2 reference:** Vstorm for team-level orchestration controls, provider-independent approvals, visuals/budgets/MCP later.
+- **Mandatory before any implementation adoption:** pin specific files/commits and file-level licenses; compare against our existing code and accepted broker contracts, source/side-effect review, SBOM/transitive dependencies, Windows/Tauri integration feasibility, independent security review, operator authorization and measured benefit. Avoid copying Electron IPC or Python backend into Tauri/Rust without a separately approved design.
+- **Current work unaffected:** P7A-3 browser-only Workflow UI independently reviewed FIX-01 at local `9a57aea590bce305933f1dc5d5a2f3448b6c5e1e`, READY FOR OPERATOR ACCEPTANCE (not operator-accepted by this entry); PR83 Draft/P0-P9 incomplete/P2 blocked/CL-P2 inactive; P7A-1 E-01 blocked; P7A-2A design accepted but P7A-2B/C unauthorized; no actual agents or FULL authorized.
+- **No new stage or work item now:** register references only; next substantive work follows existing MVP acceptance and separately authorized integration sequence.
 
 ## 2026-11-22 — ECC (Everything Claude Code): high-priority targeted adoption review
 
