@@ -71,3 +71,7 @@ Operator-reported local commit `dc61291` (parent `4a7fc0d`), unpublished, correc
 
 ## 2026-11-28 — Roadmap display changes
 Fully completed blocks are highlighted green only when every task is `done` and 100%; the 35 dated historical status notes and old header narrative moved below live roadmap into a collapsible archive. Original content and links retained; progress and formal gates unchanged. Commit `ea94639`.
+
+
+## 2026-11-28 — D-SQL-13–19 approved
+Independent FIX-01 delta review READY FOR BOUNDED SQLITE ACCEPTANCE CLOSURE at dc61291f1e4c5f65e951ab6a5d6b3c725e940b85. Historical /1 refusal finding closed; REV-03 §14; 8/8 evidence hashes and exact tested diff verified; implementer 62/62 broker (includes five regression tests), 59/59 store; no independent execution. Operator approved bounded acceptance closure, preservation of prior evidence, exact candidate, no expansion/P7A-2C, separate publication and merge approval. All remaining acceptance obligations retained; C3 deferred. No VM, elevation, permission changes or bypass. PR83 remains deferred. Next: bounded acceptance evidence, then operator decision.
