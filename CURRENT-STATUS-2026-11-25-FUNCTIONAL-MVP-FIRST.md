@@ -64,3 +64,10 @@ P7A-2B-CLOSURE-01: BLOCKED — CONCRETE IMPLEMENTATION DEFECT. Independent sourc
 
 ## 2026-11-28 — D-MVP-12–17 approved: K4–K6 alignment
 Retain K4–K6 and their original formal acceptance gates. After SQLite acceptance, map original requirements against W3.3, P7A and existing GUI (PR82/85), then implement only missing projections and GUI integration, followed by synthetic durable E2E. Coordinate functional work and applicable evidence with P7/P8 rather than duplicate implementations. No formal K4–K6 completion or new implementation authorization is claimed; K3 ISO/S-VER remains outstanding. FIX-01 continues uninterrupted. Roadmap displays existing foundations separately from unverified formal coverage; no invented progress percentages. Browser state migration refreshes affected published rows once, preserving unrelated local edits.
+
+
+## 2026-11-28 — P7A-2B-FIX-01 implementer checkpoint (independent delta review pending)
+Operator-reported local commit `dc61291` (parent `4a7fc0d`), unpublished, corrects historical /1 replay `epoch` field-presence refusal to `invalid` before Serde typed normalization; /2 and golden vectors unchanged. Before-fix regression 3 PASS / 2 FAIL (exit 101); after-fix focused 5/5 PASS, broker 62/62 PASS, store 59/59 PASS. Source changes: broker/mod.rs (+4/-2), broker/tests.rs (5 new tests, +85 lines). Implementation report `C:\AI-Development-Team\reports\TRUSTED-CLI\P7A-2B-FIX-01-RESULT.md`, separate SHA-256 evidence directory. These are **implementer-reported, not independently verified**. Next authorized logical step: independent focused delta review; no formal SQLite acceptance, branch publication, PR, merge, C1/C2/D waiver or native/full authorization. REC-10, CUST-03, CAP-04, CAP-08, GATE-01, F18/C1, C2, D, R2-01 SBOM/notices still open; C3 deferred.
+
+## 2026-11-28 — Roadmap display changes
+Fully completed blocks are highlighted green only when every task is `done` and 100%; the 35 dated historical status notes and old header narrative moved below live roadmap into a collapsible archive. Original content and links retained; progress and formal gates unchanged. Commit `ea94639`.
